@@ -2,6 +2,7 @@ import React, { Fragment } from 'react';
 import PresentationImage from '../../assets/images/presentation.png';
 import Header from '../../components/header';
 import { Column, Section, Title, Container } from 'rbx';
+import { Link } from 'react-router-dom';
 import '../../style/home.scss';
 
 const HomeScreen = () => (
@@ -19,9 +20,9 @@ const HomeScreen = () => (
               Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs.<br/><br/>
               Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print.
             </Title>
-            <a className="button is-outlined is-white is-large">
+            <Link to="/register" className="button is-outlined is-white is-large">
               <strong>Register for free</strong>
-            </a>
+            </Link>
         </Column>
           <Column size={5}>
             <img src={PresentationImage} alt="Presentation" />
