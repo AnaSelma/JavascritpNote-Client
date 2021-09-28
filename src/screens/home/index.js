@@ -23,10 +23,10 @@ const HomeScreen = () => (
             <Link to="/register" className="button is-outlined is-white is-large">
               <strong>Register for free</strong>
             </Link>
-        </Column>
+          </Column>
           <Column size={5}>
             <img src={PresentationImage} alt="Presentation" />
-         </Column>
+          </Column>
         </Column.Group> 
       </Container>
     </Section>    
