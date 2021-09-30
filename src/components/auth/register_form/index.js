@@ -1,5 +1,7 @@
 import React, { Fragment, useState } from 'react';
 import { Button, Field, Control, Input, Column, Label, Help } from "rbx";
+import UsersService from '../../../services/users';
+
 import { Redirect } from "react-router-dom";
 
 function RegisterForm() {
@@ -7,7 +9,17 @@ function RegisterForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [redirectToLogin, setRedirectToLogin] = useState(false);
-  const [error] = useState(false);
+  const [error, setError] = useState(false);
+
+  const HandleSubmit = async (evt) => {
+    evt.preventDefault();
+    try {
+      const user = await UsersService.register({name: name, email: email, password: password});
+      setRedirectToLogin(true);
+    } catch (error) {
+      setError(true);
+    }
+  }
 
   if(redirectToLogin)
     return <Redirect to={{pathname: "/login"}}/>
@@ -15,17 +27,18 @@ function RegisterForm() {
   return (
     <Fragment>
         <Column.Group centered>
-          <form>
+          <form onSubmit={HandleSubmit}>
             <Column size={12}>
               <Field>
                 <Label size="small">Name:</Label>
                 <Control>
                   <Input
                     type="name"
+                    required
+                    name="name"
                     value={name}
                     onChange={e => setName(e.target.value)}
-                    required
-                    name="name" />
+                  />
                 </Control>
               </Field>
               <Field>
@@ -33,10 +46,10 @@ function RegisterForm() {
                 <Control>
                   <Input 
                     type="email"
-                    value={email}
-                    onChange={e => setEmail(e.target.value)}
                     required
                     name="email"
+                    value={email}
+                    onChange={e => setEmail(e.target.value)}
                   />
                 </Control>
               </Field>
@@ -45,10 +58,10 @@ function RegisterForm() {
                 <Control>
                   <Input 
                     type="password"
-                    value={password}
-                    onChange={e => setPassword(e.target.value)}
                     required
                     name="password"
+                    value={password}
+                    onChange={e => setPassword(e.target.value)}
                   />
                 </Control>
               </Field>
