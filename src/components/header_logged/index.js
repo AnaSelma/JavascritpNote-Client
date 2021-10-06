@@ -5,8 +5,8 @@ import LogoImage from '../../assets/images/logo-white.png';
 import "../../style/header.scss";
 import UsersService from '../../services/users';
 import { Redirect, Link } from "react-router-dom";
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-// import { faList } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faList } from '@fortawesome/free-solid-svg-icons';
 
 
 function HeaderLogged(props) {
@@ -42,6 +42,17 @@ function HeaderLogged(props) {
       </Navbar.Brand>
 
       <Navbar.Menu>
+        <Navbar.Segment as="div" className="navbar-item navbar-start" align="start">
+          <Navbar.Item as="div">
+          <Button
+              className="open-button"
+              color="white"
+              outlined
+              onClick={() => props.setIsOpen(true)}>
+                <FontAwesomeIcon icon={faList} />
+              </Button>
+          </Navbar.Item>
+        </Navbar.Segment>
         <Navbar.Segment as="div" className="navbar-item navbar-end" align="right">
           <Navbar.Item as="div">
             <Dropdown>
