@@ -14,7 +14,7 @@ function LoginForm() {
     evt.preventDefault();
 
     try {
-      await UsersService.login({email: email, password: password});
+      const user = await UsersService.login({email: email, password: password});
       setRedirectToNotes(true);
     } catch (error) {
       setError(true)

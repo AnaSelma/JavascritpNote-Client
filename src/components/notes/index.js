@@ -1,7 +1,7 @@
 import React, { Fragment, useState, useEffect } from 'react';
 import { Column } from 'rbx';
 import List from '../notes/list';
-import NoteService from "../../services/note";
+import NotesService from "../../services/note";
 import "../../style/notes.scss";
 import { push as Menu } from 'react-burger-menu';
 
@@ -10,7 +10,7 @@ function Notes(props) {
   const [current_note, setCurrentNote] = useState({ title: "", body: "", id: "" });
 
   async function fetchNotes() {
-    const response = await NoteService.index();
+    const response = await NotesService.index();
     if (response.data.length >= 1) {
       setNotes(response.data.reverse())
       setCurrentNote(response.data[0])
@@ -30,7 +30,7 @@ function Notes(props) {
 
   return (
     <Fragment>
-      <Column.Group className="notes" >
+      <Column.Group className="notes" id="notes">
         <Menu
           pageWrapId={"notes-editor"}
           isOpen={props.isOpen}
@@ -51,7 +51,7 @@ function Notes(props) {
             current_note={current_note} />
         </Menu>
 
-        <Column size={12} className="notes-editor" >
+        <Column size={12} className="notes-editor" id="notes-editor">
           Editor...
         </Column>
       </Column.Group>
